@@ -1,8 +1,3 @@
-// Endpoint to get the items
-app.get('/api/store-items', (req, res) => {
-  const itemsArray = Array.from(storeItems, ([id, details]) => ({ id, ...details }));
-  res.json(itemsArray);
-});
 
 const storeItems = new Map([
   [1, { priceInCents: 2999, name: "Premium Car Shampoo", description: "Gentle yet effective cleaning for all car surfaces", imageUrl: "/assets/images/about/me.jpg", stripeImageUrl: "https://fusionskin.de/thumbnail/7e/7e/44/1691570119/GlossSet_neu_1920x1920.jpg", category: "Cleaning" }],
