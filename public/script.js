@@ -4,18 +4,24 @@ let basket = {};
 
 // API Functions
 // Define the function first
-function fetchStoreItems() {
-    return fetch('/api/store-items')
-        .then(res => {
-            if (!res.ok) {
-                throw new Error(`HTTP error! status: ${res.status}`);
-            }
-            return res.json();
-        })
-        .catch(e => {
-            console.error("Could not fetch store items:", e.message);
-        });
-}
+(function() {
+    function fetchStoreItems() {
+        return fetch('/api/store-items')
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(HTTP error! status: ${res.status});
+                }
+                return res.json();
+            })
+            .catch(e => {
+                console.error("Could not fetch store items:", e.message);
+            });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        fetchStoreItems();
+    });
+})();
 
 // Then use it
 document.addEventListener('DOMContentLoaded', () => {
