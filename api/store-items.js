@@ -1,16 +1,21 @@
-function fetchStoreItems() {
-    return fetch('/api/store-items')  // Note the /api/ prefix
-        .then(res => {
-            if (!res.ok) {
-                throw new Error(`HTTP error! status: ${res.status}`);
-            }
-            return res.json();
-        })
-        .catch(e => {
-            console.error("Could not fetch store items:", e.message);
-            throw e;  // Re-throw to handle it in the calling code
-        });
-}
+(function() {
+    function fetchStoreItems() {
+        return fetch('/api/store-items')
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+                return res.json();
+            })
+            .catch(e => {
+                console.error("Could not fetch store items:", e.message);
+            });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        fetchStoreItems();
+    });
+})();
 
 const storeItems = new Map([
   [1, { priceInCents: 2999, name: "Premium Car Shampoo", description: "Gentle yet effective cleaning for all car surfaces", imageUrl: "/assets/images/about/me.jpg", stripeImageUrl: "https://fusionskin.de/thumbnail/7e/7e/44/1691570119/GlossSet_neu_1920x1920.jpg", category: "Cleaning" }],
