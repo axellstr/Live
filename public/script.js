@@ -3,18 +3,29 @@ let basket = {};
 
 
 // API Functions
-function fetchStoreItems() {
-    return fetch("http://localhost:3000/store-items")
-        .then(res => {
-            if (!res.ok) {
-                throw new Error(`HTTP error! status: ${res.status}`);
-            }
-            return res.json();
-        })
-        .catch(e => {
-            console.error("Could not fetch store items:", e.message);
+(function() {
+    function fetchStoreItems() {
+        return fetch('/api/store-items')
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+                return res.json();
+            })
+            .catch(e => {
+                console.error("Could not fetch store items:", e.message);
+            });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log("Fetching store items...");
+        fetchStoreItems().then(items => {
+            console.log("Fetched items:", items);
+        }).catch(e => {
+            console.error("Error fetching items:", e);
         });
-}
+    });
+})();
 
 
 // Utility functions for cart persistence
