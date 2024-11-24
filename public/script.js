@@ -3,25 +3,18 @@ let basket = {};
 
 
 // API Functions
-// Define the function first
-(function() {
-    function fetchStoreItems() {
-        return fetch('/api/store-items')
-            .then(res => {
-                if (!res.ok) {
-                    throw new Error(`HTTP error! status: ${res.status}`);
-                }
-                return res.json();
-            })
-            .catch(e => {
-                console.error("Could not fetch store items:", e.message);
-            });
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        fetchStoreItems();
-    });
-})();
+function fetchStoreItems() {
+    return fetch("http://localhost:3000/store-items")
+        .then(res => {
+            if (!res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
+            return res.json();
+        })
+        .catch(e => {
+            console.error("Could not fetch store items:", e.message);
+        });
+}
 
 
 // Utility functions for cart persistence
@@ -200,6 +193,13 @@ function toggleShoppingCart() {
 
 
 // Event Listeners
+document.addEventListener('DOMContentLoaded', () => {
+    fetchStoreItems().then(items => {
+        if (items) {
+            displayStoreItems(items);
+        }
+    });
+
     const checkoutButton = document.getElementById('checkout-button');
     checkoutButton.addEventListener("click", () => {
         const itemsArray = Object.values(basket).map(item => ({
@@ -244,7 +244,7 @@ function toggleShoppingCart() {
     updateCartDisplay();
     updateTotalAmount();
     checkAndDisplayEmptyCart();
-);
+});
 
 // This event listener runs when the HTML document is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
@@ -252,6 +252,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // This ensures we restore the user's cart from their last session
     loadCartFromLocalStorage();
 
+    // Step 2: Fetch and display store items
+    fetchStoreItems()
+        .then(items => {
+            if (items) {
+                displayStoreItems(items);
+            }
+        });
 
     // Step 3: Set up your existing event listeners for buttons and interactions
     const checkoutButton = document.getElementById('checkout-button');
