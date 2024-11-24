@@ -18,7 +18,7 @@ app.use(cors({
 
 
 function fetchStoreItems() {
-  return fetch("https://mcqueensdetailing.eu/store-items")
+  return fetch("https://mcqueensdetailing.eu/api/store-items")
       .then(res => {
           if (!res.ok) {
               throw new Error(`HTTP error! status: ${res.status}`);
