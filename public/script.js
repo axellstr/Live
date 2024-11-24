@@ -23,11 +23,6 @@ let basket = {};
     });
 })();
 
-// Then use it
-document.addEventListener('DOMContentLoaded', () => {
-    fetchStoreItems();
-});
-
 
 // Utility functions for cart persistence
 function saveCartToLocalStorage() {
