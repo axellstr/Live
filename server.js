@@ -17,18 +17,6 @@ app.use(cors({
 }));
 
 
-function fetchStoreItems() {
-  return fetch("https://mcqueensdetailing.eu/api/store-items")
-      .then(res => {
-          if (!res.ok) {
-              throw new Error(`HTTP error! status: ${res.status}`);
-          }
-          return res.json();
-      })
-      .catch(e => {
-          console.error("Could not fetch store items:", e.message);
-      });
-}
 const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
 
 const storeItems = new Map([
