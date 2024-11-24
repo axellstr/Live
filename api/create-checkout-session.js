@@ -1,4 +1,39 @@
-app.post("/create-checkout-session", async (req, res) => {
+// Event Listeners
+document.addEventListener('DOMContentLoaded', () => {
+    fetchStoreItems().then(items => {
+        if (items) {
+            displayStoreItems(items);
+        }
+    });
+
+    const checkoutButton = document.getElementById('checkout-button');
+    checkoutButton.addEventListener("click", () => {
+        const itemsArray = Object.values(basket).map(item => ({
+            id: item.id,
+            quantity: item.quantity
+        }));
+
+        fetch("https://www.mcqueensdetailing.eu/api/create-checkout-session", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ items: itemsArray }),
+        })
+        .then(res => {
+            if (res.ok) return res.json()
+            return res.json().then(json => Promise.reject(json))
+        })
+        .then(({ url }) => {
+            window.location = url
+        })
+        .catch(e => {
+            console.error(e.error)
+            alert("Error: " + e.error);
+        });
+    });
+
+app.post("/api/create-checkout-session", async (req, res) => {
   try {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
