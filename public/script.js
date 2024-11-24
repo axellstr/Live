@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
             quantity: item.quantity
         }));
 
-        fetch("/api/create-checkout-session", { // Corrected URL
+        fetch("http://https://localhost:3000/create-checkout-session", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -227,18 +227,17 @@ document.addEventListener('DOMContentLoaded', () => {
             body: JSON.stringify({ items: itemsArray }),
         })
         .then(res => {
-            if (res.ok) return res.json();
-            return res.json().then(json => Promise.reject(json));
+            if (res.ok) return res.json()
+            return res.json().then(json => Promise.reject(json))
         })
         .then(({ url }) => {
-            window.location = url;
+            window.location = url
         })
         .catch(e => {
-            console.error(e.error);
+            console.error(e.error)
             alert("Error: " + e.error);
         });
     });
-});
 
     const shoppingCartTitle = document.querySelector('.shopping-cart-title');
     shoppingCartTitle.addEventListener('click', toggleShoppingCart);
