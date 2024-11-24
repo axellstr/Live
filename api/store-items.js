@@ -17,6 +17,23 @@
     });
 })();
 
+
+
+// api/store-items.js
+export default function handler(req, res) {
+    // Only allow GET requests
+    if (req.method !== 'GET') {
+        return res.status(405).json({ message: 'Method not allowed' });
+    }
+
+    // Your existing store items logic
+    const itemsArray = Array.from(storeItems, ([id, details]) => ({ id, ...details }));
+    
+    // Send the response
+    return res.status(200).json(itemsArray);
+}
+
+
 const storeItems = new Map([
   [1, { priceInCents: 2999, name: "Premium Car Shampoo", description: "Gentle yet effective cleaning for all car surfaces", imageUrl: "/assets/images/about/me.jpg", stripeImageUrl: "https://fusionskin.de/thumbnail/7e/7e/44/1691570119/GlossSet_neu_1920x1920.jpg", category: "Cleaning" }],
   [2, { priceInCents: 3999, name: "Microfiber Wash Mitt", description: "Ultra-soft mitt for scratch-free washing shine", imageUrl: "/assets/images/about/me.jpg", stripeImageUrl: "https://fusionskin.de/thumbnail/7e/7e/44/1691570119/GlossSet_neu_1920x1920.jpg", category: "Cleaning" }],
