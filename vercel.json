@@ -2,7 +2,7 @@
   "version": 2,
   "routes": [
     {
-      "src": "/api/store-items",
+      "src": "/api/store-items.js",
       "dest": "/api/store-items.js"
     }
   ]
