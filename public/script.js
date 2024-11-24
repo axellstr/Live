@@ -6,7 +6,7 @@ let basket = {};
 // Define the function first
 (function() {
     function fetchStoreItems() {
-        return fetch('/api/store-items.js')
+        return fetch('/api/store-items')
             .then(res => {
                 if (!res.ok) {
                     throw new Error(`HTTP error! status: ${res.status}`);
