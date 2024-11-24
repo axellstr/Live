@@ -244,7 +244,7 @@ function toggleShoppingCart() {
     updateCartDisplay();
     updateTotalAmount();
     checkAndDisplayEmptyCart();
-});
+);
 
 // This event listener runs when the HTML document is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
