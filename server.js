@@ -76,10 +76,5 @@ app.post("/create-checkout-session", async (req, res) => {
 })
 
 
-// Endpoint to get the items
-app.get('/store-items', (req, res) => {
-  const itemsArray = Array.from(storeItems, ([id, details]) => ({ id, ...details }));
-  res.json(itemsArray);
-});
 
 app.listen(3000, () => console.log("Server is running on port 3000"))
