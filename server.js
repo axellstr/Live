@@ -5,16 +5,11 @@ const app = express()
 const cors = require("cors")
 app.use(express.static("public"));
 app.use(express.json())
-// CORS configuration for Vercel
-app.use(cors({
-  origin: [
-    'https://mcqueensdetailing.eu',
-    'https://mcqueensdetailing.vercel.app',
-    process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : ''
-  ].filter(Boolean),
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type']
-}));
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+)
 
 
 const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
@@ -76,5 +71,10 @@ app.post("/create-checkout-session", async (req, res) => {
 })
 
 
+// Endpoint to get the items
+app.get('/store-items', (req, res) => {
+  const itemsArray = Array.from(storeItems, ([id, details]) => ({ id, ...details }));
+  res.json(itemsArray);
+});
 
 app.listen(3000, () => console.log("Server is running on port 3000"))
