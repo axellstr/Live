@@ -37,7 +37,7 @@ const storeItems = new Map([
   [20, { priceInCents: 4999, name: "Professional Detailing Kit", description: "Everything you need to start your detailing business", imageUrl: "/assets/images/about/me.jpg", stripeImageUrl: "https://picsum.photos/200", category: "Accessories" }]
 ]);
 
-app.post("/create-checkout-session", async (req, res) => {
+app.post("/api/create-checkout-session", async (req, res) => {
   try {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
