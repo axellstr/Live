@@ -1,29 +1,21 @@
 // Global Variables
 let basket = {};
 
-(function() {
-    function fetchStoreItems() {
-        return fetch('/api/store-items')
-            .then(res => {
-                if (!res.ok) {
-                    throw new Error(`HTTP error! status: ${res.status}`);
-                }
-                return res.json();
-            })
-            .catch(e => {
-                console.error("Could not fetch store items:", e.message);
-            });
-    }
 
-    document.addEventListener('DOMContentLoaded', () => {
-        fetchStoreItems();
-    });
-})();
+// API Functions
+function fetchStoreItems() {
+    return fetch("http://localhost:3000/store-items")
+        .then(res => {
+            if (!res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
+            return res.json();
+        })
+        .catch(e => {
+            console.error("Could not fetch store items:", e.message);
+        });
+}
 
-// Then use it
-document.addEventListener('DOMContentLoaded', () => {
-    fetchStoreItems();
-});
 
 // Utility functions for cart persistence
 function saveCartToLocalStorage() {
@@ -39,6 +31,10 @@ function loadCartFromLocalStorage() {
         updateTotalAmount();
     }
 }
+
+
+
+
 
 // Display Functions
 function displayStoreItems(items) {
@@ -93,7 +89,8 @@ function addToBasket(itemId) {
         basket[itemId].quantity += 1;
         updateCartDisplay();
         updateCartCount();
-        saveCartToLocalStorage();
+        saveCartToLocalStorage(); // Save after modification
+
     } else {
         fetchStoreItems().then(items => {
             const item = items.find(i => i.id === itemId);
@@ -102,16 +99,17 @@ function addToBasket(itemId) {
                 basket[itemId] = { ...item, imageUrl: imageUrl, quantity: 1 };
                 updateCartDisplay();
                 updateCartCount();
-                saveCartToLocalStorage();
+                saveCartToLocalStorage(); // Save after modification
             }
         }).catch(e => {
             console.error("Error adding item to basket:", e.message);
         });
     }
 
+    // Open the cart after adding an item
     const cartContainer = document.getElementById('cart-container');
     if (!cartContainer.classList.contains('visible')) {
-        toggleShoppingCart();
+        toggleShoppingCart(); // Use toggleShoppingCart instead of toggleCart
     }
 }
 
@@ -120,7 +118,8 @@ function incrementQuantity(itemId) {
         basket[itemId].quantity += 1;
         updateCartDisplay();
         updateCartCount();
-        saveCartToLocalStorage();
+        saveCartToLocalStorage(); // Save after modification
+
     }
 }
 
@@ -132,7 +131,8 @@ function decrementQuantity(itemId) {
     }
     updateCartDisplay();
     updateCartCount();
-    saveCartToLocalStorage();
+    saveCartToLocalStorage(); // Save after modification
+
 }
 
 function updateCartCount() {
@@ -187,24 +187,19 @@ function toggleShoppingCart() {
         cartContainer.classList.add('visible');
         arrowIcon.classList.remove('ri-arrow-right-line');
         arrowIcon.classList.add('ri-arrow-right-line');
-        checkAndDisplayEmptyCart();
+        checkAndDisplayEmptyCart(); // Add this line to ensure proper display when opening
     }
 }
 
-// Main initialization
+
+// Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
-    // Load cart from localStorage
-    loadCartFromLocalStorage();
+    fetchStoreItems().then(items => {
+        if (items) {
+            displayStoreItems(items);
+        }
+    });
 
-    // Fetch and display store items
-    fetchStoreItems()
-        .then(items => {
-            if (items) {
-                displayStoreItems(items);
-            }
-        });
-
-    // Set up checkout button
     const checkoutButton = document.getElementById('checkout-button');
     checkoutButton.addEventListener("click", () => {
         const itemsArray = Object.values(basket).map(item => ({
@@ -212,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
             quantity: item.quantity
         }));
 
-        fetch("https://mcqueensdetailing.eu/create-checkout-session", {
+        fetch("http://localhost:3000/create-checkout-session", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -220,19 +215,18 @@ document.addEventListener('DOMContentLoaded', () => {
             body: JSON.stringify({ items: itemsArray }),
         })
         .then(res => {
-            if (res.ok) return res.json();
-            return res.json().then(json => Promise.reject(json));
+            if (res.ok) return res.json()
+            return res.json().then(json => Promise.reject(json))
         })
         .then(({ url }) => {
-            window.location = url;
+            window.location = url
         })
         .catch(e => {
-            console.error(e.error);
+            console.error(e.error)
             alert("Error: " + e.error);
         });
     });
 
-    // Set up other event listeners
     const shoppingCartTitle = document.querySelector('.shopping-cart-title');
     shoppingCartTitle.addEventListener('click', toggleShoppingCart);
 
@@ -240,18 +234,46 @@ document.addEventListener('DOMContentLoaded', () => {
         checkbox.addEventListener('change', updateDisplayedItems);
     });
 
-    const priceSlider = document.getElementById('priceSlider');
-    if (priceSlider) {
-        priceSlider.addEventListener('input', function() {
-            const [minPrice, maxPrice] = this.value.split(',');
+    document.getElementById('priceSlider').addEventListener('input', function() {
+        const [minPrice, maxPrice] = this.value.split(',');
             document.getElementById('minPrice').textContent = minPrice;
             document.getElementById('maxPrice').textContent = maxPrice;
             updateDisplayedItems();
         });
-    }
+
+    updateCartDisplay();
+    updateTotalAmount();
+    checkAndDisplayEmptyCart();
+});
+
+// This event listener runs when the HTML document is fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Step 1: Load any previously saved cart items from localStorage
+    // This ensures we restore the user's cart from their last session
+    loadCartFromLocalStorage();
+
+    // Step 2: Fetch and display store items
+    fetchStoreItems()
+        .then(items => {
+            if (items) {
+                displayStoreItems(items);
+            }
+        });
+
+    // Step 3: Set up your existing event listeners for buttons and interactions
+    const checkoutButton = document.getElementById('checkout-button');
+    checkoutButton.addEventListener("click", () => {
+        // Your existing checkout code
+    });
+
+    const shoppingCartTitle = document.querySelector('.shopping-cart-title');
+    shoppingCartTitle.addEventListener('click', toggleShoppingCart);
 
     // Initialize cart display
     updateCartDisplay();
     updateTotalAmount();
     checkAndDisplayEmptyCart();
 });
+
+
+
