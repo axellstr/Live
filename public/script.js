@@ -200,13 +200,6 @@ function toggleShoppingCart() {
 
 
 // Event Listeners
-document.addEventListener('DOMContentLoaded', () => {
-    fetchStoreItems().then(items => {
-        if (items) {
-            displayStoreItems(items);
-        }
-    });
-
     const checkoutButton = document.getElementById('checkout-button');
     checkoutButton.addEventListener("click", () => {
         const itemsArray = Object.values(basket).map(item => ({
@@ -259,13 +252,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // This ensures we restore the user's cart from their last session
     loadCartFromLocalStorage();
 
-    // Step 2: Fetch and display store items
-    fetchStoreItems()
-        .then(items => {
-            if (items) {
-                displayStoreItems(items);
-            }
-        });
 
     // Step 3: Set up your existing event listeners for buttons and interactions
     const checkoutButton = document.getElementById('checkout-button');
