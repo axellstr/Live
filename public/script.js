@@ -1,20 +1,7 @@
 // Global Variables
 let basket = {};
 
-// API Functions
 
-function fetchStoreItems() {
-    return fetch("http://localhost:3000/store-items")
-        .then(res => {
-            if (!res.ok) {
-                throw new Error(`HTTP error! status: ${res.status}`);
-            }
-            return res.json();
-        })
-        .catch(e => {
-            console.error("Could not fetch store items:", e.message);
-        });
-}
 
 // Utility functions for cart persistence
 function saveCartToLocalStorage() {
