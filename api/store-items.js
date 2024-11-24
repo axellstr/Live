@@ -1,5 +1,5 @@
 // Endpoint to get the items
-app.get('/store-items', (req, res) => {
+app.get('/api/store-items', (req, res) => {
   const itemsArray = Array.from(storeItems, ([id, details]) => ({ id, ...details }));
   res.json(itemsArray);
 });
