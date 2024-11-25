@@ -206,7 +206,7 @@ function toggleShoppingCart() {
 
 // Event Listeners
 
-/ Event Listeners
+// Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
     fetchStoreItems().then(items => {
         if (items) {
