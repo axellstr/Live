@@ -38,6 +38,14 @@ const storeItems = new Map([
   [20, { priceInCents: 4999, name: "Professional Detailing Kit", description: "Everything you need to start your detailing business", imageUrl: "/assets/images/about/me.jpg", stripeImageUrl: "https://picsum.photos/200", category: "Accessories" }]
 ]);
 
+
+const createCheckoutSessionRouter = require('./api/create-checkout-session');
+
+app.use('/api', [
+  storeItemsRouter,
+  createCheckoutSessionRouter
+]);
+
 app.post("/api/create-checkout-session", async (req, res) => {
   try {
     const session = await stripe.checkout.sessions.create({
