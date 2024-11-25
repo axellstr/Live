@@ -6,7 +6,7 @@
       "dest": "/api/store-items.js"
     },
     {
-      "src": "/create-checkout-session",
+      "src": "/api/create-checkout-session",
       "dest": "/api/create-checkout-session.js"
     }
   ]
