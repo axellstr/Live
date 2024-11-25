@@ -205,22 +205,21 @@ function toggleShoppingCart() {
 
 
 // Event Listeners
+
+/ Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
     fetchStoreItems().then(items => {
         if (items) {
             displayStoreItems(items);
         }
     });
-
     const checkoutButton = document.getElementById('checkout-button');
     checkoutButton.addEventListener("click", () => {
         const itemsArray = Object.values(basket).map(item => ({
             id: item.id,
             quantity: item.quantity
         }));
-
-        // Update the URL to point to the new API endpoint
-        fetch('/api/create-checkout-session', {
+        fetch("/create-checkout-session", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -239,7 +238,6 @@ document.addEventListener('DOMContentLoaded', () => {
             alert("Error: " + e.error);
         });
     });
-});
 
     const shoppingCartTitle = document.querySelector('.shopping-cart-title');
     shoppingCartTitle.addEventListener('click', toggleShoppingCart);
