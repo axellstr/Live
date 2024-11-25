@@ -205,6 +205,7 @@ function toggleShoppingCart() {
 
 
 // Event Listeners
+// Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
     fetchStoreItems().then(items => {
         if (items) {
@@ -219,7 +220,12 @@ document.addEventListener('DOMContentLoaded', () => {
             quantity: item.quantity
         }));
 
-        fetch("http://https://localhost:3000/create-checkout-session", {
+        // Define the API URL based on the current environment
+        const API_URL = window.location.hostname === 'localhost' 
+            ? 'http://localhost:3000'
+            : 'https://www.mcqueensdetailing.eu';  // Replace with your actual Vercel deployment URL
+
+        fetch(`${API_URL}/create-checkout-session`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -238,6 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
             alert("Error: " + e.error);
         });
     });
+});
 
     const shoppingCartTitle = document.querySelector('.shopping-cart-title');
     shoppingCartTitle.addEventListener('click', toggleShoppingCart);
