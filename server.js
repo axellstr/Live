@@ -8,6 +8,7 @@ app.use(express.json());
 app.use(
   cors({
     origin: "https://www.mcqueensdetailing.eu",
+        credentials: true
   })
 );
 
