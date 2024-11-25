@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
             id: item.id,
             quantity: item.quantity
         }));
-        fetch("/create-checkout-session", {
+        fetch("/api/create-checkout-session", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
