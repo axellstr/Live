@@ -14,7 +14,8 @@
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "nodemailer": "^6.9.16",
-    "stripe": "^16.12.0"
+    "stripe": "^16.12.0",
+    "node-fetch": "^2.6.1" // Add this line
   },
   "devDependencies": {
     "nodemon": "^3.1.7"
