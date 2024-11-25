@@ -39,12 +39,6 @@ const storeItems = new Map([
 ]);
 
 
-const createCheckoutSessionRouter = require('./api/create-checkout-session');
-
-app.use('/api', [
-  storeItemsRouter,
-  createCheckoutSessionRouter
-]);
 
 app.post("/api/create-checkout-session", async (req, res) => {
   try {
