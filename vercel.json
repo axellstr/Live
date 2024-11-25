@@ -7,7 +7,7 @@
     },
     {
       "src": "/create-checkout-session",
-      "dest": "/server.js"
+      "dest": "/api/create-checkout-session.js"
     }
   ]
 }
