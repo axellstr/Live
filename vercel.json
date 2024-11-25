@@ -12,6 +12,10 @@
       "dest": "server.js"
     },
     {
+      "src": "/eshop.html",
+      "dest": "public/eshop.html"
+    },
+    {
       "src": "/(.*)",
       "dest": "public/$1"
     }
