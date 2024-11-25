@@ -211,13 +211,16 @@ document.addEventListener('DOMContentLoaded', () => {
             displayStoreItems(items);
         }
     });
+
     const checkoutButton = document.getElementById('checkout-button');
     checkoutButton.addEventListener("click", () => {
         const itemsArray = Object.values(basket).map(item => ({
             id: item.id,
             quantity: item.quantity
         }));
-        fetch("http://https://localhost:3000/create-checkout-session", {
+
+        // Update the URL to point to the new API endpoint
+        fetch('/api/create-checkout-session', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -236,6 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
             alert("Error: " + e.error);
         });
     });
+});
 
     const shoppingCartTitle = document.querySelector('.shopping-cart-title');
     shoppingCartTitle.addEventListener('click', toggleShoppingCart);
