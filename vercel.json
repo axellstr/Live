@@ -1,19 +1,11 @@
 {
   "version": 2,
   "builds": [
-    {
-      "src": "server.js",
-      "use": "@vercel/node"
-    }
+    { "src": "api/server.js", "use": "@vercel/node" }
   ],
   "routes": [
-    {
-      "src": "/api/store-items",
-      "dest": "/api/store-items.js"
-    },
-    {
-      "src": "/create-checkout-session",
-      "dest": "server.js"
-    }
+    { "src": "/api/(.*)", "dest": "api/$1" },
+    { "src": "/", "dest": "public/index.html" },
+    { "src": "/(.*)", "dest": "public/$1" }
   ]
 }
