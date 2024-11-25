@@ -7,6 +7,9 @@ module.exports = async (req, res) => {
     try {
       // Fetch store items
       const response = await fetch(`${process.env.CLIENT_URL}/api/store-items`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch store items');
+      }
       const storeItems = await response.json();
 
       const session = await stripe.checkout.sessions.create({
@@ -36,6 +39,7 @@ module.exports = async (req, res) => {
       });
       res.json({ url: session.url });
     } catch (e) {
+      console.error(e); // Log the error for debugging
       res.status(500).json({ error: e.message });
     }
   } else {
