@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
             id: item.id,
             quantity: item.quantity
         }));
-        fetch("https://www.mcqueensdetailing.eu/create-checkout-session", {
+        fetch("/create-checkout-session", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
