@@ -1,14 +1,19 @@
 require("dotenv").config();
 const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY);
+const fetch = require("node-fetch");
 
 module.exports = async (req, res) => {
   if (req.method === "POST") {
     try {
+      // Fetch store items
+      const response = await fetch(`${process.env.CLIENT_URL}/api/store-items`);
+      const storeItems = await response.json();
+
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],
         mode: "payment",
         line_items: req.body.items.map(item => {
-          const storeItem = storeItems.get(item.id);
+          const storeItem = storeItems.find(storeItem => storeItem.id === item.id);
           return {
             price_data: {
               currency: "eur",
