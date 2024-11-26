@@ -1,6 +1,6 @@
 * {
     ::-webkit-scrollbar {
-        width: 2px;
+        width: 3px;
     }
     
     ::-webkit-scrollbar-track {
@@ -38,7 +38,7 @@
     --primary-color: rgb(235, 157, 14);
     --primarys-color: rgba(235, 158, 14, 0.774);
     --lighter-color: #1F1F1F;
-    --subtitle-color: rgb(119, 119, 125);
+    --subtitle-color: #cacaca;
     --black-color: #070707;
     --white-color: #fff;
 }
@@ -121,7 +121,6 @@ h2,
     background: -webkit-linear-gradient(#fff, #696969);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-block: 2rem;
 }
 
 h3,
@@ -1805,7 +1804,21 @@ html {
 * 06.SERVICE CSS STYLE
 * ----------------------------------------------------------------------------------------
 */
+.services-section {
+    position: relative; /* Ensure the section is positioned relative for the ::after element */
+}
 
+.services-section::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(to bottom, black 0%, transparent 50%);
+    pointer-events: none; /* Ensures the pseudo-element doesn't interfere with user interactions */
+    z-index: -1;
+}
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -1836,6 +1849,7 @@ html {
     border-bottom: 1px solid #e6e9ed;
     background-size: 200% 200%;
     transition: background-position 0.5s ease;
+    border: 2px solid;
 }
 
 .service-card-header:hover {
@@ -2588,6 +2602,10 @@ ul.extra-skills li i {
 * ----------------------------------------------------------------------------------------
 */
 
+.company-design-area{
+    backdrop-filter: blur(5px);
+}
+
 .company-design-area h2 {
     text-transform: uppercase;
     font-size: 16px;
@@ -2604,17 +2622,27 @@ ul.extra-skills li i {
 
 .call-to-action-part {
     padding: 100px 100px;
-    margin-top: 100px;
+    margin-top: 100px;  
     margin-bottom: 100px;
     border: 1px solid rgba(0, 0, 0, 0.05);
-    border-radius: 20px;
-    box-shadow: rgba(255, 255, 255, 0.025) 0px 0.362176px 0.651917px -1px inset, rgba(255, 255, 255, 0.036) 0px 3px 5.4px -2px inset;
+    border-radius: 2em;
     background-color: transparent;
-    background-image: linear-gradient(135deg, #1c1c1c, #3a3a3a, #1d1d1d, #1f1e1e);
+    background-image: linear-gradient(135deg, #1c1c1c8c, #5a5a5acc, #1d1d1d, #1f1e1e8a);
     transition: background-position 1s;
-    background-size: 200% 200%;
+    background-size: 200% 200%;    
 }
+.call-to-action-part::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: blur(5px);
+    z-index: -1; /* Ensure the pseudo-element is behind the text */
+    border-radius: 2em;
 
+}
 
 .call-to-action-part h2 {
     font-size: 60px;
@@ -3707,7 +3735,6 @@ ul.blog_pagination li a:hover {
     font-size: 1.2rem;
     margin-bottom: 30px;
     line-height: 1.6;
-    color: rgb(177, 177, 177)!important;
     text-shadow: 0 1px 0 rgb(0, 0, 0);
 }
 
