@@ -1,4 +1,4 @@
-﻿* {
+* {
     ::-webkit-scrollbar {
         width: 2px;
     }
@@ -67,7 +67,7 @@ main {
 }
 
 body {
-    background-color: #1b1b1b;
+    background-color: #000000;
     line-height: 30px;
     font-size: 16px;
     font-family: "DM Sans", sans-serif;
@@ -114,7 +114,11 @@ h6,
 
 h2,
 .h2 {
-    font-size: 22px;
+    font-size: 44px;
+    background: -webkit-linear-gradient(#fff, #696969);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-block: 2rem;
 }
 
 h3,
@@ -1961,122 +1965,120 @@ html {
 * ----------------------------------------------------------------------------------------
 */
 
-
-.services-section{
-    padding-bottom: 100px;
-    padding-top: 100px;
-    background-color: #000;
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    padding: 2rem;
+    margin: 0 auto;
 }
 
-
-.sicon {
-    width: 50px;
-    height: 50px;
-    margin-right: 20px;
+/* Service Card Styling */
+.service-card {
+    background-color: rgba(143, 143, 143, 0);
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    overflow: hidden;   
 }
 
-
-/* Remove active state */
-.accordion-button:active,
-.accordion-button:focus,
-.accordion-button:hover {
-    background-color: transparent !important;
-    color: inherit !important;
-    border-color: transparent !important;
-    box-shadow: none !important;
+.service-card:hover {
+    transform: scale(1.02);
+    transition: 0.25s;
 }
 
-/* Accordion Styling */
-.accordion-item {
-    background-color: #00000044;
-    background-image: url("https://www.transparenttextures.com/patterns/broken-noise.png");
-    border-radius: 0.5em;
-    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+.service-card-header {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-bottom: 1px solid #e6e9ed;
+    background-size: 200% 200%;
+    transition: background-position 0.5s ease;
 }
 
-.accordion-button {
-    padding: 1.25rem;
-    background: transparent!important;
-    
+.service-card-header:hover {
+    background-position: right center;
 }
 
-.accordion-button:not(.collapsed) {
-    box-shadow: none;
-}
-
-
-/* Initial state */
-.accordion-button::after {
-    content: "+";
-    background-image: none !important;
-    transform: none !important;
-    display: inline-block;
-    transform-origin: center center; /* Ensure rotation happens from the center */
-    font-size: 2.5rem;
-    height: unset;
-    color: var(--primary-color);
-
-    
-}
-
-
-/* Service Icon Styling */
-.service-icon-wrapper {
-    width: 48px;
-    height: 48px;
+.service-card-icon {
+    width: 60px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 8px;
+    margin-right: 1rem;
+    border-radius: 10px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 
-.service-icon {
-    width: 24px;
-    height: 24px;
+.service-card-icon img {
+    width: 40px;
+    height: 40px;
 }
 
-/* Feature List Styling */
+.service-card-title {
+    margin: 0;
+    font-size: 1.25rem;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.service-card-header small {
+    color: #6c757d;
+    font-size: 0.8rem;
+}
+
+/* Service Card Content */
+.service-card-content {
+    background-color: #ffffff00;
+    padding: 1rem;
+}
+
+.service-card-description {
+    color: #475569;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
 .service-features {
-    list-style: none;
-    padding-left: 0;
-}
-.service-features p{
-    list-style: none;
-    padding-left: 0;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
 .service-features li {
     position: relative;
     padding-left: 1.5rem;
     margin-bottom: 0.5rem;
+    color: #4a5568;
 }
 
 .service-features li::before {
-    content: "✓";
+    content: '✓';
     position: absolute;
     left: 0;
-    color: var(--primary-color);
+    color: #10b981;
     font-weight: bold;
 }
 
-/* Accordion Content Animation */
-.accordion-collapse {
-    transition: all 0.5s ease-in-out;
-}
-
-
-
-
 /* Responsive Adjustments */
-@media (max-width: 768px) {
-    .accordion-body .row {
-        flex-direction: column-reverse;
-    }
-    
-    .accordion-body .col-md-6:last-child {
-        margin-bottom: 1.5rem;
+@media screen and (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+        gap: 1.5rem;
     }
 }
+
+/* Color Variations for Different Service Cards */
+.service-card:nth-child(1) .service-card-header { border-bottom-color: #3b82f6; }
+.service-card:nth-child(2) .service-card-header { border-bottom-color: #10b981; }
+.service-card:nth-child(3) .service-card-header { border-bottom-color: #f43f5e; }
+.service-card:nth-child(4) .service-card-header { border-bottom-color: #8b5cf6; }
+.service-card:nth-child(5) .service-card-header { border-bottom-color: #f59e0b; }
+.service-card:nth-child(6) .service-card-header { border-bottom-color: #6366f1; }
+
 
 
 
@@ -2744,12 +2746,15 @@ ul.extra-skills li i {
 * ----------------------------------------------------------------------------------------
 */
 
+.company-design-area{
+    background-color: #000;
+}
 .company-design-area h2 {
     text-transform: uppercase;
     font-size: 16px;
     text-align: center;
     color: #fff;
-    margin-block: 1em;
+    margin-block: 2em;
     letter-spacing: 5px;
     font-weight: 500;
 }
@@ -2760,19 +2765,17 @@ ul.extra-skills li i {
 
 .call-to-action-part {
     padding: 100px 100px;
-    margin-top:100px;
-    margin-bottom:100px;
+    margin-top: 100px;
+    margin-bottom: 100px;
     border: 1px solid rgba(0, 0, 0, 0.05);
     border-radius: 20px;
     box-shadow: rgba(255, 255, 255, 0.025) 0px 0.362176px 0.651917px -1px inset, rgba(255, 255, 255, 0.036) 0px 3px 5.4px -2px inset;
-    background-color: var(--primary-color);
+    background-color: transparent;
+    background-image: linear-gradient(135deg, #1c1c1c, #3a3a3a, #1d1d1d, #1f1e1e);
+    transition: background-position 1s;
+    background-size: 200% 200%;
 }
 
-.call-to-action-area {
-    padding-top: 15px;
-    background: rgba(255, 0, 0, 0);
-
-}
 
 .call-to-action-part h2 {
     font-size: 60px;
@@ -2784,7 +2787,7 @@ ul.extra-skills li i {
 
 .call-to-action-part p {
     font-size: 20px;
-    color: var(--lighter-color);
+    color: azure;
 }
 
 .footer-bottom .copyright-text {
@@ -3070,6 +3073,7 @@ body.loaded {
         flex-wrap: wrap;
     gap: 80px;
     gap: 5rem;
+    height: 100px;
 }
 @media (max-width: 600px) {
     .scroller__inner {
@@ -3136,21 +3140,6 @@ body.loaded {
     }
 }
 
-
-
-.tag-list {
-    margin: 0;
-    padding-inline: 0;
-    list-style: none;
-}
-
-.tag-list li {
-    padding: 16px;
-    padding: 1rem;
-    background: var(--clr-primary-400);
-    border-radius: 0.5rem;
-    box-shadow: 0 0.5rem 1rem -0.25rem var(--clr-primary-900);
-}
 
 /*
 * ----------------------------------------------------------------------------------------
@@ -3690,8 +3679,6 @@ ul.blog_pagination li a:hover {
 
 @media (max-width: 768px) {
     .mb-4 {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
       gap: 10px;
     }
     
@@ -3939,20 +3926,12 @@ ul.blog_pagination li a:hover {
     background: #ffffff57;
 
 }
-
-
-
-
-
 #navbarToggle:not(:disabled) {
     background-color: transparent;
 }
-
-
 #filter-range{
     width: 300px;
 }
-
 .footer-top p{
     margin-right: 2rem;
 
@@ -3963,13 +3942,11 @@ ul.blog_pagination li a:hover {
     margin-bottom: 2rem;
     color: var(--primary-color);
 }
-
 .footer-links {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;
 }
-
 .contact-form h1{
     margin-bottom: 2rem;
     color: var(--primary-color);
