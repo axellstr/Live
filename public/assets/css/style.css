@@ -1,6 +1,6 @@
 * {
     ::-webkit-scrollbar {
-        width: 3px;
+        width: 2px;
     }
     
     ::-webkit-scrollbar-track {
@@ -67,7 +67,13 @@ main {
 }
 
 body {
-    background-color: #000000;
+    --s: 100px; /* control the size*/
+    --c1: #000000;
+    --c2: #111111;
+    background:
+      conic-gradient(var(--c1)   135deg,var(--c2) 0 270deg,
+                     var(--c1) 0 315deg,var(--c2) 0)
+      0/var(--s) var(--s);
     line-height: 30px;
     font-size: 16px;
     font-family: "DM Sans", sans-serif;
@@ -104,7 +110,6 @@ h6,
 
 
 #sek{
-    font-family: "Sour Gummy", sans-serif;
     font-optical-sizing: auto;
     color: var(--primary-color);
 }
@@ -1866,12 +1871,13 @@ html {
 
 /* Service Card Content */
 .service-card-content {
-    background-color: #ffffff00;
+    background-color: #27272783;
     padding: 1rem;
+    backdrop-filter: blur(5px);
 }
 
 .service-card-description {
-    color: #475569;
+    color: #a5a8ac;
     margin-bottom: 1rem;
     line-height: 1.6;
 }
@@ -1886,7 +1892,7 @@ html {
     position: relative;
     padding-left: 1.5rem;
     margin-bottom: 0.5rem;
-    color: #4a5568;
+    color: #a5a8ac;
 }
 
 .service-features li::before {
@@ -2581,9 +2587,6 @@ ul.extra-skills li i {
 * ----------------------------------------------------------------------------------------
 */
 
-.company-design-area{
-    background-color: #000;
-}
 .company-design-area h2 {
     text-transform: uppercase;
     font-size: 16px;
