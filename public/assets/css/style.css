@@ -67,6 +67,7 @@ main {
 }
 
 body {
+    background-color: black!important;
     --s: 100px; /* control the size*/
     --c1: #000000;
     --c2: #111111;
