@@ -1,6 +1,6 @@
 * {
     ::-webkit-scrollbar {
-        width: 3px;
+        width: 2px;
     }
     
     ::-webkit-scrollbar-track {
@@ -67,17 +67,9 @@ main {
 }
 
 body {
-    background-color: black!important;
-    --s: 100px; /* control the size*/
-    --c1: #000000;
-    --c2: #111111;
-    background:
-      conic-gradient(var(--c1)   135deg,var(--c2) 0 270deg,
-                     var(--c1) 0 315deg,var(--c2) 0)
-      0/var(--s) var(--s);
+    background-color: rgb(0, 0, 0)!important;
     line-height: 30px;
     font-size: 16px;
-    font-family: "DM Sans", sans-serif;
     overflow-x: hidden;
     background-attachment: fixed;
     position: relative;
@@ -111,22 +103,25 @@ h6,
 
 
 #sek{
-    font-optical-sizing: auto;
     color: var(--primary-color);
 }
 
 h2,
 .h2 {
-    font-size: 44px;
+    font-size: 2em;
     background: -webkit-linear-gradient(#fff, #696969);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    font-family: "Michroma", sans-serif;
+
 }
 
 h3,
 .h3 {
     line-height: 1.3;
     font-size: 30px;
+    font-family: "Michroma", sans-serif;
+
 }
 
 h4,
@@ -174,7 +169,7 @@ a {
     -webkit-transition: 0.5s;
     transition: 0.5s;
     text-decoration: none;
-    font-family: "DM Sans", sans-serif;
+    font-family: "Michroma", sans-serif;
 }
 
 a:hover,
@@ -288,7 +283,7 @@ html {
     cursor: pointer;
     display: inline-block;
     border: 1px solid rgba(0, 0, 0, 0);
-    font-size: 16px;
+    font-size: clamp(11px, 3vw + 0.4rem, 14px);
     font-weight: 500;
     line-height: 20px;
     margin: 0 5px 10px 0;
@@ -300,6 +295,8 @@ html {
     -webkit-transition: .3s;
     transition: .3s;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 0px 0px;
+    font-family: "Michroma", sans-serif;
+
 }
 
 
@@ -767,7 +764,6 @@ html {
     transition: all 500ms ease;
 }
 
-
 .main-header .logo-outer {
     -webkit-box-flex: 0;
     -ms-flex: none;
@@ -800,6 +796,7 @@ html {
     -webkit-animation: easeIn 1s;
     animation: easeIn 1s;
     background: #000;
+    
 }
 
 
@@ -815,6 +812,7 @@ html {
 
 .nav-outer {
     margin-left: auto;
+    
 }
 
 .main-menu .mobile-logo {
@@ -836,8 +834,6 @@ html {
     display: -ms-flexbox;
     display: flex;
 }
-
-
 
 .main-menu .navbar-collapse li {
     padding: 12px 5px 12px 30px;
@@ -1391,6 +1387,8 @@ html {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 20px;
+    font-family: "Michroma", sans-serif;
+
 }
 
 #items{
@@ -1814,8 +1812,8 @@ html {
     top: 0;
     left: 0;
     width: 100%;
-    height: 50%;
-    background: linear-gradient(to bottom, black 0%, transparent 50%);
+    height: 100%; /* Change to cover the entire section */
+    background: linear-gradient(to bottom, black 0%, transparent 20%, transparent 80%, black 100%);
     pointer-events: none; /* Ensures the pseudo-element doesn't interfere with user interactions */
     z-index: -1;
 }
@@ -1830,58 +1828,103 @@ html {
 /* Service Card Styling */
 .service-card {
     background-color: rgba(143, 143, 143, 0);
-    border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
-    overflow: hidden;   
+    overflow: hidden;    
 }
 
-.service-card:hover {
-    transform: scale(1.02);
-    transition: 0.25s;
+.service-card-icon img {
+    transition: transform 0.5s ease; /* Ensure smooth transition for both hover and reverse */
 }
+
+.service-card:hover .service-card-icon img {
+    transform: rotate(12deg) scale(1.4); /* Combine rotate and scale */
+}
+
 
 .service-card-header {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 1.5rem;
-    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    border-bottom: 1px solid #e6e9ed;
+    background-image: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
     background-size: 200% 200%;
-    transition: background-position 0.5s ease;
-    border: 2px solid;
+    transition: 
+        background-position 0.5s ease, 
+        transform 0.3s ease, 
+        box-shadow 0.3s ease;
+    font-family: "Michroma", sans-serif;
+    border-radius: 1em 1em 0 0;
+    border-bottom: 3px solid #ffae00;
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    font-size: clamp(1rem, 3vw, 1.5rem);
 }
 
-.service-card-header:hover {
+.service-card-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg, 
+        transparent, 
+        rgba(255,255,255,0.1), 
+        transparent
+    );
+    transition: all 0.6s ease;
+}
+
+.service-card:hover {
     background-position: right center;
+    transform: scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.service-card-header:hover::before {
+    left: 100%;
+}
+
+.service-card-header .icon {
+    font-size: 1.5em;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.service-card-header:hover .icon {
+    opacity: 1;
+    transform: translateX(10px);
 }
 
 .service-card-icon {
-    width: 60px;
-    height: 60px;
+    width: 75px;
+    height: 75px;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 1rem;
     margin-right: 1rem;
-    border-radius: 10px;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    border-radius: 1rem;
 }
 
 .service-card-icon img {
-    width: 40px;
-    height: 40px;
+    filter: invert(80%);
 }
 
 .service-card-title {
     margin: 0;
     font-size: 1.25rem;
-    color: #2c3e50;
+    color: #ffffff;
     font-weight: 600;
 }
 
+
 .service-card-header small {
-    color: #6c757d;
-    font-size: 0.8rem;
+    font-size: 1rem;
+    font-family: "Roboto", sans-serif;
 }
 
 /* Service Card Content */
@@ -1889,12 +1932,14 @@ html {
     background-color: #27272783;
     padding: 1rem;
     backdrop-filter: blur(5px);
+    border-radius: 0 0 1rem 1rem;
 }
 
 .service-card-description {
     color: #a5a8ac;
     margin-bottom: 1rem;
     line-height: 1.6;
+    height: 80px;
 }
 
 .service-features {
@@ -1914,7 +1959,7 @@ html {
     content: '✓';
     position: absolute;
     left: 0;
-    color: #10b981;
+    color: #ffae00;
     font-weight: bold;
 }
 
@@ -1926,14 +1971,6 @@ html {
         gap: 1.5rem;
     }
 }
-
-/* Color Variations for Different Service Cards */
-.service-card:nth-child(1) .service-card-header { border-bottom-color: #3b82f6; }
-.service-card:nth-child(2) .service-card-header { border-bottom-color: #10b981; }
-.service-card:nth-child(3) .service-card-header { border-bottom-color: #f43f5e; }
-.service-card:nth-child(4) .service-card-header { border-bottom-color: #8b5cf6; }
-.service-card:nth-child(5) .service-card-header { border-bottom-color: #f59e0b; }
-.service-card:nth-child(6) .service-card-header { border-bottom-color: #6366f1; }
 
 
 
@@ -2096,6 +2133,9 @@ ul.extra-skills li i {
 .projects-area {
     padding-bottom: 100px;
     background-color: rgb(0, 0, 0);
+    font-family: "Michroma", sans-serif;
+    font-weight: 100;
+    font-size: 0.8rem;
 }
 
 
@@ -2603,7 +2643,7 @@ ul.extra-skills li i {
 */
 
 .company-design-area{
-    backdrop-filter: blur(5px);
+    background-color: black;
 }
 
 .company-design-area h2 {
@@ -2626,23 +2666,13 @@ ul.extra-skills li i {
     margin-bottom: 100px;
     border: 1px solid rgba(0, 0, 0, 0.05);
     border-radius: 2em;
-    background-color: transparent;
+    background: linear-gradient(to bottom, black 0%, transparent 20%, transparent 80%, black 100%);
     background-image: linear-gradient(135deg, #1c1c1c8c, #5a5a5acc, #1d1d1d, #1f1e1e8a);
     transition: background-position 1s;
     background-size: 200% 200%;    
 }
-.call-to-action-part::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    backdrop-filter: blur(5px);
-    z-index: -1; /* Ensure the pseudo-element is behind the text */
-    border-radius: 2em;
 
-}
+
 
 .call-to-action-part h2 {
     font-size: 60px;
@@ -2662,6 +2692,11 @@ ul.extra-skills li i {
     font-size: 14px;
     line-height: 20px;
     font-weight: 500;
+    
+}
+
+.main-footer{
+    background-color: rgba(0, 0, 0, 0.34);
 }
 
 .footer-bottom .copyright-text a {
@@ -3715,23 +3750,24 @@ ul.blog_pagination li a:hover {
     transform: translate(-50%, -50%);
     text-align: center;
     z-index: 2;
-    width: 75%;
-    padding: 20px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding-block: clamp(1em, 4vw, 2em);
+    max-width: 100%;
 }
 
 .text-overlay h1 {
-    font-size: 3.5rem;
-    color: white!important;
+    font-family: "Michroma", sans-serif;
+    font-weight: 900;
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    color: white !important;
     text-shadow: 0 1px 0 rgb(0, 0, 0);
-}
-
-.text-overlay .subheading {
-    font-size: 2rem;
-    display: block;
-    margin-bottom: 20px;
+    margin: 0;
+    line-height: 1.2;
 }
 
 .text-overlay p {
+    font-family: "Roboto", serif;
     font-size: 1.2rem;
     margin-bottom: 30px;
     line-height: 1.6;
@@ -3743,11 +3779,12 @@ ul.blog_pagination li a:hover {
 /* For mobile responsiveness */
 @media (max-width: 768px) {
     .text-overlay{
-        width: 100%;
+        margin: 0;
+        padding: 0;
     }
 
     .text-overlay h1 {
-        font-size: 2rem!important;
+        font-size: 2.4rem!important;
     }
     
     .text-overlay .subheading {
@@ -3765,20 +3802,27 @@ ul.blog_pagination li a:hover {
 
 
 .sec-btn {
-    background: #ffffff8e;
+    color: rgba(255, 255, 255, 0.685);
+    background: #00000054;
     cursor: pointer;
     display: inline-block;
-    font-size: 16px;
+    font-size: clamp(11px, 3vw + 0.4rem, 14px);
     font-weight: 500;
     line-height: 20px;
     margin: 0 5px 10px 0;
     overflow: visible;
+    border: 1px solid var(--primary-color);
     border-radius: 0.5em;
     padding: 13px 30px;
     text-align: center;
     text-transform: none;
     transition: .3s;
+    text-shadow: 1px 1px 1px black;
+    font-family: "Michroma", sans-serif;
+
 }
+
+
 
 .sec-btn:focus {
     text-decoration: none;
@@ -3787,10 +3831,9 @@ ul.blog_pagination li a:hover {
 
 .sec-btn:hover {
     text-decoration: none;
-    color: #ebebeb;
+    color: var(--primary-color);
     transition: 0.5s;
-    background: #ffffff57;
-
+    background: #000000d2;
 }
 #navbarToggle:not(:disabled) {
     background-color: transparent;
@@ -3798,6 +3841,9 @@ ul.blog_pagination li a:hover {
 #filter-range{
     width: 300px;
 }
+
+
+
 .footer-top p{
     margin-right: 2rem;
 
@@ -3807,8 +3853,12 @@ ul.blog_pagination li a:hover {
     text-wrap: pretty;
     margin-bottom: 2rem;
     color: var(--primary-color);
+    font-family: "Michroma", sans-serif;
+    font-size: 1.2rem;
 }
 .footer-links {
+    font-family: "Michroma", sans-serif;
+    font-size: 0.8rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;
@@ -3821,6 +3871,8 @@ ul.blog_pagination li a:hover {
 .counter-item{
     color: var(--primary-color);
     font-size: 1.5em;
+    font-family: "Michroma", sans-serif;
+
 }
 
 
@@ -3899,3 +3951,4 @@ ul.blog_pagination li a:hover {
     font-weight: bold;
     color: #cacaca;
 }
+
