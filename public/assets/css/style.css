@@ -1925,6 +1925,8 @@ html {
 .service-card-header small {
     font-size: 1rem;
     font-family: "Roboto", sans-serif;
+    margin-top: 1rem;
+
 }
 
 /* Service Card Content */
@@ -1969,6 +1971,9 @@ html {
         grid-template-columns: 1fr;
         padding: 1rem;
         gap: 1.5rem;
+    }
+    .service-card-title {
+        font-size: 1rem;
     }
 }
 
