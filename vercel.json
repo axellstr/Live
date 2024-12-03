@@ -10,8 +10,18 @@
       "dest": "/api/create-checkout-session.js"
     },
     {
-      "src": "/(.*)",
-      "dest": "/$1",
+      "src": "/eshop.html",
+      "headers": { "Location": "/eshop" },
+      "status": 308
+    },
+    {
+      "src": "/contact.html",
+      "headers": { "Location": "/contact" },
+      "status": 308
+    },
+    {
+      "src": "/about.html",
+      "headers": { "Location": "/about" },
       "status": 308
     }
   ]
