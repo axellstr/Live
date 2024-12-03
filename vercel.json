@@ -1,4 +1,3 @@
-
 {
   "version": 2,
   "routes": [
@@ -9,6 +8,11 @@
     {
       "src": "/api/create-checkout-session",
       "dest": "/api/create-checkout-session.js"
+    },
+    {
+      "src": "/(.*)\\.html",
+      "headers": { "Location": "/$1" },
+      "status": 308
     }
   ]
 }
