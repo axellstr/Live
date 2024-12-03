@@ -10,8 +10,8 @@
       "dest": "/api/create-checkout-session.js"
     },
     {
-      "src": "/(.*)\\.html",
-      "headers": { "Location": "/$1" },
+      "src": "/(.*)",
+      "dest": "/$1",
       "status": 308
     }
   ]
