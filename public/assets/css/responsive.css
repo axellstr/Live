@@ -204,7 +204,7 @@ Version      : 1.0
     }
 
     .single-page-hero-area h2 {
-        font-size: 40px;
+        font-size: 1.9em;
         line-height: 60px;
         text-wrap: pretty;
     }
@@ -218,8 +218,9 @@ Version      : 1.0
     }
 
     .call-to-action-part h2 {
-        font-size: 35px;
+        font-size: 2em;
         line-height: 50px;
+        text-align: center;
     }
 
     .company-design-area {
@@ -305,9 +306,6 @@ Version      : 1.0
         padding-top: 30px;
     }
 
-    .about-image-part {
-        padding-bottom: 30px;
-    }
 
     .fixed-header .main-menu .navbar-collapse li a {
         color: #fff;
@@ -518,11 +516,6 @@ Version      : 1.0
 
 
 
-@media only screen and (max-width: 375px) {
-    .about-image-part {
-        padding-left: 50px;
-    }
-}
 
 
 
