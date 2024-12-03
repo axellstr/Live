@@ -9,18 +9,5 @@
       "src": "/api/create-checkout-session",
       "dest": "/api/create-checkout-session.js"
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/",
-      "destination": "/eshop.html"
-    }
-  ],
-  "redirects": [
-    {
-      "source": "/eshop.html",
-      "destination": "/",
-      "permanent": true
-    }
   ]
 }
