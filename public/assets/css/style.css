@@ -109,7 +109,7 @@ h2,
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-family: "Michroma", sans-serif;
-
+    text-shadow: 4px 4px 5px rgba(0,0,0,0.3);
 }
 
 h3,
@@ -309,7 +309,6 @@ html {
 
 .theme-btn.call-to-action-button:hover {
     color: var(--white-color);
-    font-size: 18px;
 }
 
 .theme-btn i {
@@ -1799,6 +1798,7 @@ html {
 * ----------------------------------------------------------------------------------------
 */
 .services-section {
+    margin-bottom: 4em;
     position: relative; /* Ensure the section is positioned relative for the ::after element */
 }
 
@@ -1834,14 +1834,22 @@ html {
 }
 
 .service-card:hover .service-card-icon img {
-    transform: rotate(12deg) scale(1.4); /* Combine rotate and scale */
+    transform: rotate(12deg) scale(1.2); /* Combine rotate and scale */
+}
+
+
+#emblemoG {
+    margin: 40px;
+    filter: invert(0%);
+    width: 50px;
+    height: 50px;
+    transform: none; /* Combine rotate and scale */
 }
 
 
 .service-card-header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: 1.5rem;
     background-image: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
     background-size: 200% 200%;
@@ -1876,8 +1884,7 @@ html {
 
 .service-card:hover {
     background-position: right center;
-    transform: scale(1.02);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    transform: scale(1.01);
 }
 
 .service-card-header:hover::before {
@@ -1890,10 +1897,6 @@ html {
     transition: all 0.3s ease;
 }
 
-.service-card-header:hover .icon {
-    opacity: 1;
-    transform: translateX(10px);
-}
 
 .service-card-icon {
     width: 75px;
@@ -1922,8 +1925,6 @@ html {
 .service-card-header small {
     font-size: 1rem;
     font-family: "Roboto", sans-serif;
-    margin-top: 1rem;
-
 }
 
 /* Service Card Content */
@@ -2044,6 +2045,10 @@ ul.extra-skills li i {
 .resume-area {
     padding: 100px 0px;
 
+}
+
+.resume-box span {
+    color: #d6006fcc;
 }
 
 .resume-wrapper {
@@ -2491,7 +2496,11 @@ ul.extra-skills li i {
 * ----------------------------------------------------------------------------------------
 */
 .contact-area {
+    background-color: rgba(255, 255, 255, 0.034);
+    backdrop-filter: blur(5px);
     padding: 50px 0px;
+    border-radius: 2em;
+    z-index: -1;
 }
 
 .contact-form-area .form-group {
@@ -2509,19 +2518,19 @@ ul.extra-skills li i {
 
 .contact-form-area .form-group .form-control {
     font-size: 16px;
-    color: #000;
+    color: #d4c6c6;
     font-weight: 400;
     line-height: 1.3;
     padding: 19px 20px 19px 20px;
-    background: #F9F9F9;
+    background: #00000010;
     font-family: "DM Sans", sans-serif;
-    border: 1px dashed var(--border-color);
+    border: 1px solid rgba(255, 255, 255, 0.171);
     border-radius: 10px;
 }
 
 .contact-form-area .form-group .form-control:focus {
     box-shadow: none;
-    background: #F9F9F9;
+    background: #c7c7c710;
     border-color: var(--primary-color);
 }
 
@@ -2544,17 +2553,17 @@ ul.extra-skills li i {
 }
 
 .contact-form-area .form-group .nice-select:focus:after {
-    border-color: white;
+    background: #c7c7c710;
 }
 
 .contact-form-area .form-group .nice-select .list {
-    background: var(--black-color);
+    background: #c7c7c710;
 }
 
 .contact-form-area .form-group .nice-select .option.focus,
 .contact-form-area .form-group .nice-select .option.selected.focus,
 .contact-form-area .form-group .nice-select .option:hover {
-    background-color: var(--heading-color);
+    background: #c7c7c710;
 }
 
 .contact-form-area .form-group .nice-select:after {
@@ -2601,7 +2610,7 @@ ul.extra-skills li i {
 }
 
 .contact-page-content .social-style-one a:not(:hover) {
-    background: white;
+    background: #c7c7c710;
 }
 
 .contact-page-form {
@@ -2645,7 +2654,6 @@ ul.extra-skills li i {
 */
 
 .company-design-area{
-    background-color: rgba(0, 0, 0, 0.479);
     margin-block: 2em;
     padding-block: 2em;
 }
@@ -2667,28 +2675,74 @@ ul.extra-skills li i {
     padding: 100px 100px;
     margin-top: 100px;  
     margin-bottom: 100px;
-    border: 1px solid rgba(0, 0, 0, 0.05);
     border-radius: 2em;
-    background: linear-gradient(to bottom, black 0%, transparent 20%, transparent 80%, black 100%);
-    background-image: linear-gradient(135deg, #1c1c1c8c, #5a5a5acc, #1d1d1d, #1f1e1e8a);
+    background-image: linear-gradient(90deg, #1c1c1c, #5a5a5a00, #1d1d1d, #1f1e1e);
+    position: relative;
+    overflow: hidden;
     transition: background-position 1s;
-    background-size: 200% 200%;    
+    background-size: 150% 150%;
 }
-
 
 
 .call-to-action-part h2 {
     font-size: 60px;
     line-height: 70px;
     margin-bottom: 20px;
-    font-weight: 400;
-    color: var(--black-color);
+    font-weight: 900;
 }
 
 .call-to-action-part p {
-    font-size: 20px;
-    color: azure;
+    font-size: 1.3rem;
+    line-height: 1.6;
+    padding: 10px 40px 10px 40px;
 }
+
+@media (max-width: 600px) {
+    .call-to-action-part p {
+        padding: 0;
+    }
+}
+
+.gradient-text-btn {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 600;
+    color: transparent;
+    background: linear-gradient(
+        90deg, 
+        #e0e0e0, 
+        #ffffff, 
+        #3a3a3a, 
+        #e0e0e0
+    );
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    animation: silverFlow 7s ease-out infinite;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.363);
+}
+
+
+.gradient-text-btn i {
+    margin-left: 8px;
+    vertical-align: middle;
+    color: inherit;
+}
+
+@keyframes silverFlow {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+
 
 .footer-bottom .copyright-text {
     color: var(--main-color);
@@ -2704,6 +2758,7 @@ ul.extra-skills li i {
 
 .footer-bottom .copyright-text a {
     color: var(--primary-color);
+    font-weight: 100;
 }
 
 
@@ -3765,7 +3820,7 @@ ul.blog_pagination li a:hover {
     font-size: clamp(2rem, 8vw, 3.5rem);
     color: white !important;
     text-shadow: 0 1px 0 rgb(0, 0, 0);
-    margin: 0;
+    margin-bottom: 1rem;
     line-height: 1.2;
 }
 
